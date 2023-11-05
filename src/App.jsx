@@ -16,6 +16,12 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const handleNewPerson = (event) =>{
     event.preventDefault()
+    const chk = persons.some((person)=>newName === person.name)
+    if(chk){
+      alert(newName+' name already exist')
+      setNewName('');
+      return
+    }
     const newMan = {
       name : newName
     }
