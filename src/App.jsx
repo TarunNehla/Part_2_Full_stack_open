@@ -53,10 +53,11 @@ const App = () => {
 
   const handleSearch = (event) => {
     event.preventDefault()
-    setWord(event.target.value)
+    const newWord = event.target.value
+    setWord(newWord)
     setNotestoShow(persons.filter(person => {
       return (
-        person.name.toLowerCase().includes(word.toLowerCase())
+        person.name.toLowerCase().includes(newWord.toLowerCase())
       )
     }))
   }
