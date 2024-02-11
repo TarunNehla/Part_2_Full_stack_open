@@ -3,7 +3,7 @@ import axios from 'axios'
 import Filter from './components/Filter'
 import AddPerson from './components/NewPerson'
 import ShowPerson from './components/Person'
-
+import axiosFunc from './services/persons'
 
 
 const App = () => {
@@ -12,14 +12,14 @@ const App = () => {
   const [newNum, setNewNum] = useState('')
   const [notesToShow, setNotestoShow] = useState(persons)
   const [word, setWord] = useState('')
-  const [ide, setIde] = useState(7)
+  const [ide, setIde] = useState(15)
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
-        setNotestoShow(response.data)
+    axiosFunc
+      .getAll()
+      .then(intialNotes => {
+        setPersons(intialNotes)
+        setNotestoShow(intialNotes)
       })
   }, [])
 
@@ -40,12 +40,12 @@ const App = () => {
       number: newNum,
       id: ide
     }
-    axios
-    .post('http://localhost:3001/persons',newMan)
-    .then(response => {
+    axiosFunc
+    .create(newMan)
+    .then(createdNote => {
       setIde(ide + 1)
-      setPersons(persons.concat(response.data))
-      setNotestoShow(notesToShow.concat(response.data))
+      setPersons(persons.concat(createdNote))
+      setNotestoShow(notesToShow.concat(createdNote))
       setNewName('')
       setNewNum('')
     })
