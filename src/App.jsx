@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import Filter from './components/Filter'
 import AddPerson from './components/NewPerson'
 import ShowPerson from './components/Person'
@@ -6,43 +7,55 @@ import ShowPerson from './components/Person'
 
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-  ])
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNum, setNewNum] = useState('')
   const [notesToShow, setNotestoShow] = useState(persons)
-  const [word , setWord] = useState('')
-  const [ide,setIde] = useState(5)
-  const handleNewPerson = (event) =>{
+  const [word, setWord] = useState('')
+  const [ide, setIde] = useState(7)
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        setPersons(response.data)
+        setNotestoShow(response.data)
+      })
+  }, [])
+
+
+
+
+  const handleNewPerson = (event) => {
     event.preventDefault()
-    const chk = persons.some((person)=>newName === person.name)
-    if(chk){
-      alert(newName+' name already exist')
+    const chk = persons.some((person) => newName === person.name)
+    if (chk) {
+      alert(newName + ' name already exist')
       setNewName('');
       return
     }
-    
+
     const newMan = {
-      name : newName,
-      number : newNum,
-      id : ide
+      name: newName,
+      number: newNum,
+      id: ide
     }
-    setIde(ide+1)
-    setPersons(persons.concat(newMan))
-    setNotestoShow(persons)
-    setNewName('');
-    setNewNum('');
+    axios
+    .post('http://localhost:3001/persons',newMan)
+    .then(response => {
+      setIde(ide + 1)
+      setPersons(persons.concat(response.data))
+      setNotestoShow(notesToShow.concat(response.data))
+      setNewName('')
+      setNewNum('')
+    })
   }
 
-  const handleName = (event) =>{
+  const handleName = (event) => {
     event.preventDefault()
     setNewName(event.target.value)
   }
-  const handleNum = (event) =>{
+  const handleNum = (event) => {
     event.preventDefault()
     setNewNum(event.target.value)
   }
@@ -57,16 +70,16 @@ const App = () => {
       )
     }))
   }
-  
+
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter word = {word} handleSearch={handleSearch}/>
+      <Filter word={word} handleSearch={handleSearch} />
       <h2>Add new here </h2>
-      <AddPerson handleNewPerson={handleNewPerson} newName={newName} newNum={newNum} handleName={handleName} handleNum = {handleNum} />
+      <AddPerson handleNewPerson={handleNewPerson} newName={newName} newNum={newNum} handleName={handleName} handleNum={handleNum} />
       <h2>Numbers</h2>
-      <ShowPerson notesToShow={notesToShow}/>
+      <ShowPerson notesToShow={notesToShow} />
     </div>
   )
 }
