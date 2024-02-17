@@ -39,7 +39,26 @@ const App = () => {
     event.preventDefault()
     const chk = persons.some((person) => newName === person.name)
     if (chk) {
-      alert(newName + ' name already exist')
+      const result = confirm(newName + ' name already exist, Do you to want to replace it with new one ?')
+      if(result){
+        const fNote = notesToShow.find((note) => note.name == newName)
+        const newMan = {
+          name : newName,
+          number : newNum,
+          id : fNote.id
+        }
+        axiosFunc
+        .update(fNote.id,newMan)
+        .then(updatedNote => {
+          const updatedNotes = notesToShow.map(note => {
+            if((note.id ===updatedNote.id)){
+              return updatedNote
+            }
+            return note
+          })
+          setNotestoShow(updatedNotes)
+        })
+      }
       setNewName('');
       return
     }

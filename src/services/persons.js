@@ -16,4 +16,10 @@ const delt = (url) =>{
     return request.then(response =>response.data)
 }
 
-export default {getAll,create,delt}
+const update = (url, newObject) => {
+    const newUrl = baseUrl + '/'+ url
+    const request = axios.put(newUrl,newObject)
+    return request.then(response => response.data)
+}
+
+export default {getAll,create,delt,update}
