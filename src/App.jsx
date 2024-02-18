@@ -4,7 +4,7 @@ import Filter from './components/Filter'
 import AddPerson from './components/NewPerson'
 import ShowPerson from './components/Person'
 import axiosFunc from './services/persons'
-
+import Notification from './components/notification'
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -12,6 +12,7 @@ const App = () => {
   const [newNum, setNewNum] = useState('')
   const [notesToShow, setNotestoShow] = useState(persons)
   const [word, setWord] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     axiosFunc
@@ -60,6 +61,7 @@ const App = () => {
         })
       }
       setNewName('');
+      setNewNum('');
       return
     }
 
@@ -73,6 +75,10 @@ const App = () => {
     .then(createdNote => {
       setPersons(persons.concat(createdNote))
       setNotestoShow(notesToShow.concat(createdNote))
+      setErrorMessage(newName + ' is added')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000);
       setNewName('')
       setNewNum('')
     })
@@ -102,6 +108,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message = {errorMessage}/>
       <Filter word={word} handleSearch={handleSearch} />
       <h2>Add new here </h2>
       <AddPerson handleNewPerson={handleNewPerson} newName={newName} newNum={newNum} handleName={handleName} handleNum={handleNum} />
