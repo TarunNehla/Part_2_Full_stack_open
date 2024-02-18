@@ -58,6 +58,10 @@ const App = () => {
             return note
           })
           setNotestoShow(updatedNotes)
+          setErrorMessage(newName + "'s number is updated")
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000);
         })
       }
       setNewName('');
