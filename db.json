@@ -1,80 +1,39 @@
 {
-  "notes": [
+  "persons": [
     {
-      "id": 1,
-      "content": "HTML is easy",
-      "important": true
+      "name": "Arto Hellas",
+      "number": "040-123456",
+      "id": 1
     },
     {
-      "id": 2,
-      "content": "Browser can execute only JavaScript",
-      "important": false
+      "name": "Ada Lovelace",
+      "number": "39-44-5323523",
+      "id": 2
     },
     {
-      "id": 3,
-      "content": "GET and POST are the most important methods of HTTP protocol",
-      "important": true
+      "name": "Dan Abramov",
+      "number": "12-43-234345",
+      "id": 3
     },
     {
-      "content": "hello",
-      "important": false,
+      "name": "Mary Poppendieck",
+      "number": "39-23-6423122",
       "id": 4
     },
     {
-      "content": "yes",
-      "important": false,
-      "id": 5
+      "name": "Tarundhnehla",
+      "number": "8489398",
+      "id": 15
     },
     {
-      "content": "lets see",
-      "important": true,
-      "id": 6,
-      "improtant": false
+      "name": "Paras Poria",
+      "number": "+91 8904444",
+      "id": "4f9956b0-44f1-4b16-a121-4438467e5dbb"
     },
     {
-      "content": "lets see",
-      "important": false,
-      "id": 7,
-      "improtant": true
-    },
-    {
-      "content": "ok",
-      "important": false,
-      "id": 8,
-      "improtant": true
-    },
-    {
-      "content": "tarun",
-      "important": true,
-      "id": 9
-    },
-    {
-      "content": "tarun Dhillon",
-      "important": false,
-      "id": 10,
-      "improtant": true
-    },
-    {
-      "content": "can I see this",
-      "important": false,
-      "id": 11
-    },
-    {
-      "content": "Yup",
-      "important": true,
-      "id": 12,
-      "improtant": true
-    },
-    {
-      "content": "Is it important ",
-      "important": false,
-      "id": 13
-    },
-    {
-      "content": "ok",
-      "important": true,
-      "id": 14,
-      "improtant": false
+      "name": "kapil",
+      "number": "444",
+      "id": "48104117-b58c-49a2-bf8a-b40a21f28981"
     }
   ]
 }
