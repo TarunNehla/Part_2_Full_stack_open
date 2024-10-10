@@ -63,6 +63,13 @@ const App = () => {
             setErrorMessage(null)
           }, 5000);
         })
+        .catch(error => {
+          document.documentElement.style.setProperty("--ntcolor", "red");
+          setErrorMessage('note is deleted , try again')
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000);
+        })
       }
       setNewName('');
       setNewNum('');

@@ -1,3 +1,7 @@
+:root {
+  --ntcolor : green;
+}
+
 h1 {
     color: green;
     font-style : italic;
@@ -11,7 +15,7 @@ p{
   }
 
   .error {
-    color: rgb(0, 255, 106);
+    color: var(--ntcolor);
     background: lightgrey;
     font-size: 20px;
     border-style: solid;
